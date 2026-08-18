@@ -570,5 +570,5 @@ pub trait WriteReady: ErrorType {
 /// Split a Stream in a reader and writer, which are independent
 pub trait Split {
     /// Split a Stream in a reader and writer, which are independent
-    fn split<R: Read, W: Write>(&mut self) -> (R, W);
+    fn split(&mut self) -> (impl Read, impl Write);
 }
