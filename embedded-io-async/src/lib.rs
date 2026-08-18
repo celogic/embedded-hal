@@ -167,3 +167,9 @@ pub trait Seek: ErrorType {
         self.seek(SeekFrom::Current(0)).await
     }
 }
+
+/// Split a Stream in a reader and writer, which are independent
+pub trait Split {
+    /// Split a Stream in a reader and writer, which are independent
+    fn split<R: Read, W: Write>(&mut self) -> (&mut R, &mut W);
+}
