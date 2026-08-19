@@ -168,8 +168,14 @@ pub trait Seek: ErrorType {
     }
 }
 
-/// Split a Stream in a reader and writer, which are independent
+/// Split a stream in a reader and writer, which are independent
 pub trait Split {
-    /// Split a Stream in a reader and writer, which are independent
-    fn split(&mut self) -> (impl Read, impl Write);
+    /// Reader type of the split stream
+    type Reader: Read;
+    
+    /// Writer type of the split stream
+    type Writer: Write;
+
+    /// Split a stream in independent reader and writer
+    fn split(&mut self) -> (Self::Reader, Self::Writer);
 }
